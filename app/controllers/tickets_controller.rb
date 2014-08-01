@@ -12,7 +12,7 @@ class TicketsController < ApplicationController
   end
 
   def create
-    render json: { response: 'hola6', error: false }
+    render json: { response: 'ok', error: false }
   end
 
   def show
@@ -25,10 +25,10 @@ class TicketsController < ApplicationController
   end
 
   def update
-    render json: { response: 'hola8', error: false }
+    render json: { response: 'ok', error: false }
   end
 
   def destroy
-    render json: { response: 'hola9', error: false }
+    render json: { response: 'ok', error: false }
   end
 end

@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.select(:id, :name, :lastname, :email, :password).where(:state => 1).order(:name)
-    if( @users.count(:id) > 0 )
+    @users = User.where(:state => 1).order(:name)
+    if( @users.count > 0 )
       render json: { response: @users, error: false, message: nil }
     else
       render json: { response: nil, error: true, message: 'Not exists users' }
@@ -14,8 +14,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.select(:id, :name, :lastname, :email, :password).where(:id => params[:id], :state => 1)
-    if( @user.count(:id) > 0 )
+    @user = User.where(:id => params[:id], :state => 1)
+    if( @user )
       render json: { response: @user, error: false, message: nil }
     else
       render json: { response: nil, error: true, message: 'Not exists user' }
