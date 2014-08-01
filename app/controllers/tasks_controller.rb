@@ -1,10 +1,10 @@
 class TasksController < ApplicationController
   
   def index
-    @user = User.select(:id, :name, :lastname, :email, :password).where(:id => params[:user_id])
+    @user = User.find(params[:user_id])
     @user_tasks = @user.tasks
-    # @tasks = @user
-    if( @user_tasks.count(:id) > 0 )
+
+    if( @user_tasks )
       render json: { response: @user_tasks, error: false, message: '' }
     else
       render json: { response: nil, error: true, message: 'Not exists tasks' }

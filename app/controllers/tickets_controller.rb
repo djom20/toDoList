@@ -1,9 +1,11 @@
 class TicketsController < ApplicationController
 
   def index
-    @tickets = Ticket.all()
-    if( @tickets.count > 0 )
-      render json: { response: @tickets, error: false, message: '' }
+    @task = Task.find(params[:task_id])
+    @task_tickets = @task.tickets
+
+    if( @task_tickets )
+      render json: { response: @task_tickets, error: false, message: '' }
     else
       render json: { response: '', error: true, message: 'Not exists tickets' }
     end
