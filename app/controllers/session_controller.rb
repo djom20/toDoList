@@ -1,16 +1,24 @@
 class SessionController < ApplicationController
   
-  def create 
-    user = User.new(params[:user])
-    if user.save
-      render :json=> user.as_json(:auth_token=>user.authentication_token, :email=>user.email), :status=>201
-      return
-    else
-      warden.custom_failure!
-      render :json=> user.errors, :status=>422
-    end
+  def create
+    build_resource
+    resource = User.find_for_database_authentication(:email => params[:email])
+    return invalid_login_attempt unless resource
+        
+    if resource.valid_password?(params[:password])
+        resource.ensure_authentication_token!  #make sure the user has a token generated
+        render :json => { :authentication_token => resource.authentication_token, :user_id => resource.id }, :status => :created
+    return
   end
 
   def destroy
+  	@user=User.where(:authentication_token=>params[:auth_token]).first
+    @user.reset_authentication_token!
+    render :json => { :message => ["Session deleted."] },  :success => true, :status => :ok
   end
+
+  def invalid_login_attempt
+    warden.custom_failure!
+    render :json => { :errors => ["Invalid email or password."] },  :success => false, :status => :unauthorized
+	end
 end
