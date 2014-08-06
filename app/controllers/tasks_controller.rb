@@ -5,6 +5,12 @@ class TasksController < ApplicationController
     @user = User.find(params[:user_id])
     @user_tasks = @user.tasks
 
+    headers['Access-Control-Allow-Origin'] = '*' 
+    headers['Access-Control-Request-Method'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    headers['content-type'] = 'application/json'
+
     if( @user_tasks )
       render :json => @user_tasks.to_json, :callback => params[:callback]
     else
