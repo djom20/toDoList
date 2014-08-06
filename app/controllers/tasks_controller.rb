@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  respond_to :json
   
   def index
     @user = User.find(params[:user_id])

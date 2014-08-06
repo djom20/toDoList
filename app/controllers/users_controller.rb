@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   def index
     @users = User.where(:state => 1).order(:name)
     if( @users.count > 0 )
-      render json: { response: @users, error: false, message: nil }
+      render :json => @users, :callback => params[:callback]
+      # render json: { response: @users, error: false, message: nil }
     else
       render json: { response: nil, error: true, message: 'Not exists users' }
     end
