@@ -5,7 +5,7 @@ class TasksController < ApplicationController
     @user_tasks = @user.tasks
 
     if( @user_tasks )
-      render json: => @user_tasks, :callback => params[:callback]
+      render :json => @user_tasks, :callback => params[:callback]
     else
       render json: { response: nil, error: true, message: 'Not exists tasks' }
     end
