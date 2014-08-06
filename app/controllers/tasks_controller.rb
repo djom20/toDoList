@@ -5,7 +5,7 @@ class TasksController < ApplicationController
     @user_tasks = @user.tasks
 
     if( @user_tasks )
-      render json: { response: @user_tasks, error: false, message: 'Not Error' }
+      render json: { @user_tasks }
     else
       render json: { response: nil, error: true, message: 'Not exists tasks' }
     end
