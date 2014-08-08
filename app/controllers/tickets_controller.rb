@@ -1,11 +1,14 @@
 class TicketsController < ApplicationController
+  respond_to :json
+  before_filter :set_headers
 
   def index
     @task = Task.find(params[:task_id])
     @task_tickets = @task.tickets
 
     if( @task_tickets )
-      render json: { response: @task_tickets, error: false, message: '' }
+      # render json: { response: @task_tickets, error: false, message: '' }
+      render :json => @task_tickets.to_json, :callback => params[:callback], :content_type => 'application/json'
     else
       render json: { response: '', error: true, message: 'Not exists tickets' }
     end
