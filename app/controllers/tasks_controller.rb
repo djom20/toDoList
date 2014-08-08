@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
   respond_to :json
-
   before_filter :set_headers
   
   def index
