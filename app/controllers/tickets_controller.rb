@@ -7,7 +7,6 @@ class TicketsController < ApplicationController
     @task_tickets = @task.tickets
 
     if( @task_tickets )
-      # render json: { response: @task_tickets, error: false, message: '' }
       render :json => @task_tickets.to_json, :callback => params[:callback], :content_type => 'application/json'
     else
       render :json => 'Error'.to_json, :callback => params[:callback], :content_type => 'application/json'
@@ -21,7 +20,7 @@ class TicketsController < ApplicationController
   def show
     @ticket = Ticket.where(:id => params[:id])
     if( @ticket.count > 0 )
-      render json: { response: @ticket, error: false, message: nil }
+      render :json => @ticket.to_json, :callback => params[:callback], :content_type => 'application/json'
     else
       render :json => 'Error'.to_json, :callback => params[:callback], :content_type => 'application/json'
     end
