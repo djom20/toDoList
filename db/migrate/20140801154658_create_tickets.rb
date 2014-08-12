@@ -3,6 +3,7 @@ class CreateTickets < ActiveRecord::Migration
     create_table :tickets do |t|
       t.references :task, index: true
       t.string :description
+      t.integer :completed, :default => 1
       t.integer :state, :default => 1
 
       t.timestamps

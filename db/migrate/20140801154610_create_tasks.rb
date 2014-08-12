@@ -4,6 +4,7 @@ class CreateTasks < ActiveRecord::Migration
       t.references :user, index: true
       t.string :name
       t.string :description
+      t.integer :completed, :default => 1
       t.integer :state, :default => 1
 
       t.timestamps

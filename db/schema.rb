@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140801203048) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "description"
+    t.integer  "completed",   default: 1
     t.integer  "state",       default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140801203048) do
   create_table "tickets", force: true do |t|
     t.integer  "task_id"
     t.string   "description"
+    t.integer  "completed",   default: 1
     t.integer  "state",       default: 1
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -10,12 +10,12 @@ class TicketsController < ApplicationController
       # render json: { response: @task_tickets, error: false, message: '' }
       render :json => @task_tickets.to_json, :callback => params[:callback], :content_type => 'application/json'
     else
-      render json: { response: '', error: true, message: 'Not exists tickets' }
+      render :json => 'Error'.to_json, :callback => params[:callback], :content_type => 'application/json'
     end
   end
 
   def create
-    render json: { response: 'ok', error: false }
+    render :json => 'Ok'.to_json, :callback => params[:callback], :content_type => 'application/json'
   end
 
   def show
@@ -23,16 +23,16 @@ class TicketsController < ApplicationController
     if( @ticket.count > 0 )
       render json: { response: @ticket, error: false, message: nil }
     else
-      render json: { response: nil, error: true, message: 'Not exists ticket' }
+      render :json => 'Error'.to_json, :callback => params[:callback], :content_type => 'application/json'
     end
   end
 
   def update
-    render json: { response: 'ok', error: false }
+    render :json => 'Ok'.to_json, :callback => params[:callback], :content_type => 'application/json'
   end
 
   def destroy
-    render json: { response: 'ok', error: false }
+    render :json => 'Ok'.to_json, :callback => params[:callback], :content_type => 'application/json'
   end
 
   def set_headers
