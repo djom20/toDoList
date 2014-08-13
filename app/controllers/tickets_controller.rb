@@ -27,6 +27,7 @@ class TicketsController < ApplicationController
   end
 
   def update
+    # @ticket = Ticket.where(:id => params[:id])
     render :json => 'Ok'.to_json, :callback => params[:callback], :content_type => 'application/json'
   end
 
