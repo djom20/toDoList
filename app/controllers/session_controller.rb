@@ -3,11 +3,11 @@ class SessionController < ApplicationController
   before_filter :set_headers
   
   def create
-    render :json => @task_tickets.to_json, :callback => params[:callback], :content_type => 'application/json'
+    render :json => 'ok'.to_json, :callback => params[:callback], :content_type => 'application/json'
   end
 
   def destroy
-  	render :json => @task_tickets.to_json, :callback => params[:callback], :content_type => 'application/json'
+  	render :json => 'ok'.to_json, :callback => params[:callback], :content_type => 'application/json'
   end
 
   def set_headers
