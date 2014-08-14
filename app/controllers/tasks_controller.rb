@@ -17,9 +17,9 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.where(:id => params[:task_id])
-    if( @task.count > 0 )
-      render json: { response: @task, error: false, message: 'Not exists tasks' }
+    @task = Task.find(params[:id])
+    if( @task )
+      render :json => @task.to_json, :callback => params[:callback], :content_type => 'application/json'
     else
       render json: { response: nil, error: true, message: 'Not exists task' }
     end
