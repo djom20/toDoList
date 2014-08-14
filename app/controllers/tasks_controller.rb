@@ -17,7 +17,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = User.where(:id => params[:id])
+    @task = Task.where(:id => params[:task_id])
     if( @task.count > 0 )
       render json: { response: @task, error: false, message: 'Not exists tasks' }
     else
