@@ -1,0 +1,50 @@
+<div ng-controller="sessionController">
+    <form name="signinForm" role="form" class="signinForm">
+        <div class="form-group" ng-class="{ 'has-error has-feedback': signinForm.registrationName.$invalid }">
+            <label>First Name</label>
+            <input autofocus type="text" class="form-control" placeholder="Enter First Name" name="registrationName" ng-model="registrationName">
+            <span ng-show="signinForm.registrationName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error has-feedback': signinForm.registrationLastname.$invalid }">
+            <label>Lastname</label>
+            <input type="text" class="form-control" placeholder="Enter Lastname" name="registrationLastname" ng-model="registrationLastname">
+            <span ng-show="signinForm.registrationLastname.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error has-feedback': signinForm.registrationEmail.$invalid }">
+            <label>Email address</label>
+            <input type="email" class="form-control" placeholder="Enter email" name="registrationEmail" ng-model="registrationEmail">
+            <span ng-show="signinForm.registrationEmail.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error has-feedback': signinForm.registrationPassword.$invalid }">
+            <label>Password</label>
+            <input type="password" class="form-control" placeholder="Enter Password" name="registrationPassword" ng-model="registrationPassword">
+            <span ng-show="signinForm.registrationPassword.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+        </div>
+        <div ng-show="warning2" class="alert alert-danger fade in" role="alert">
+            <button type="button" class="close" ng-click="dontError()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <p>{{ warning_text2 }}</p>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="button" ng-click="doRegistration(item, $event)">Sign Up</button>
+        <br><br>
+        <a href="./#/" class="color-white">Login</a>
+    </form>
+</div>
+
+<style type="text/css">
+    body {
+      color: #fff;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      background-color: rgb(35, 113, 159);
+    }
+
+	a {
+      color: #fff;
+    }
+
+    .signinForm{
+		margin: 0 auto;
+		margin-top: 7%;
+    	width: 35%;
+    }
+</style>
