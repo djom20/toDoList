@@ -14,7 +14,12 @@ class TicketsController < ApplicationController
   end
 
   def create
-    render :json => 'Ok'.to_json, :callback => params[:callback], :content_type => 'application/json'
+    @task = Task.create(params[:task])
+    if @task.save
+      render  :json => @task.to_json
+    else
+      render :json => 'Error'.to_json, :callback => params[:callback], :content_type => 'application/json'
+    # render :json => 'Ok'.to_json, :callback => params[:callback], :content_type => 'application/json'
   end
 
   def show
@@ -45,5 +50,14 @@ class TicketsController < ApplicationController
       headers['Access-Control-Max-Age'] = '86400'
       headers['Access-Control-Allow-Credentials'] = 'true'
     end
-  end  
+  end
+
+  private
+    # Using a private method to encapsulate the permissible parameters
+    # is just a good pattern since you'll be able to reuse the same
+    # permit list between create and update. Also, you can specialize
+    # this method with per-user checking of permissible attributes.
+    def task_params
+      params.require(:person).permit(:description, :completed, :state)
+    end
 end
