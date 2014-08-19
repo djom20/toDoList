@@ -19,5 +19,5 @@ angular.module('toDoList.services',['ngResource'])
     }])
 
     .factory('usersService', ['$resource', function($resource){
-        return $resource('http://todolistrails.herokuapp.com/api/v1/users/:userId', {userId: '@uid'}, {listUsers:{method:"GET", isArray:true}});
+        return $resource('/api/v1/users/:userId', {userId: '@uid'}, {listUsers:{method:"GET", isArray:true}});
     }]);
